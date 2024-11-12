@@ -104,21 +104,22 @@ export function UserAssignDialog({ open, onOpenChange }: Props) {
             </p>
           )}
 
+          <div className="flex items-center space-x-2 pb-2">
+            <Checkbox
+              checked={areAllSelected}
+              onCheckedChange={handleSelectAll}
+              id="select-all"
+            />
+            <label
+              htmlFor="select-all"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Select all employees
+            </label>
+          </div>
+
           <ScrollArea className="h-[300px] border rounded-md">
             <div className="p-4 space-y-4">
-              <div className="flex items-center space-x-2 pb-2 border-b">
-                <Checkbox
-                  checked={areAllSelected}
-                  onCheckedChange={handleSelectAll}
-                  id="select-all"
-                />
-                <label
-                  htmlFor="select-all"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Select all employees
-                </label>
-              </div>
               {filteredUsers.map((user) => (
                 <div
                   key={user.id}
