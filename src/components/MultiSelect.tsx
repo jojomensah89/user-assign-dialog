@@ -21,7 +21,7 @@ interface MultiSelectProps {
   onChange: (value: string[]) => void;
 }
 
-export function MultiSelect({ options, placeholder, onChange }: MultiSelectProps) {
+export function MultiSelect({ options = [], placeholder, onChange }: MultiSelectProps) {
   const [open, setOpen] = React.useState(false);
   const [selectedValues, setSelectedValues] = React.useState<string[]>([]);
 
@@ -51,10 +51,10 @@ export function MultiSelect({ options, placeholder, onChange }: MultiSelectProps
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder={`Search ${placeholder?.toLowerCase()}...`} />
+          <CommandInput placeholder={`Search ${placeholder?.toLowerCase() || ''}...`} />
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup>
-            {options.map((option) => (
+            {(options || []).map((option) => (
               <CommandItem
                 key={option}
                 value={option}

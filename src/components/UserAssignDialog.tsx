@@ -53,8 +53,8 @@ export function UserAssignDialog({ open, onOpenChange }: Props) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-semibold">Add employee</DialogTitle>
-          <p className="text-sm text-muted-foreground mt-1">
+          <DialogTitle>Add employee</DialogTitle>
+          <p className="text-sm text-muted-foreground">
             Add one or more individuals to this assessment cycle; their addition will be temporary, only for the current cycle.
           </p>
         </DialogHeader>
@@ -118,7 +118,7 @@ export function UserAssignDialog({ open, onOpenChange }: Props) {
             </div>
           </ScrollArea>
 
-          <div className="flex justify-end gap-2 mt-4">
+          <div className="flex justify-end gap-2">
             <Button variant="outline" onClick={() => onOpenChange(false)}>
               Cancel
             </Button>
@@ -127,7 +127,6 @@ export function UserAssignDialog({ open, onOpenChange }: Props) {
                 console.log("Saved users:", selectedUsers);
                 onOpenChange(false);
               }}
-              className="bg-primary hover:bg-primary/90"
             >
               Save
             </Button>
