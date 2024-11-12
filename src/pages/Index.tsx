@@ -1,11 +1,24 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Button } from "@/components/ui/button";
+import { UserAssignDialog } from "@/components/UserAssignDialog";
+import { useState } from "react";
 
 const Index = () => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen p-8 bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+        <Button 
+          onClick={() => setDialogOpen(true)}
+          className="bg-primary hover:bg-primary/90"
+        >
+          Assign Users
+        </Button>
+
+        <UserAssignDialog 
+          open={dialogOpen} 
+          onOpenChange={setDialogOpen}
+        />
       </div>
     </div>
   );
