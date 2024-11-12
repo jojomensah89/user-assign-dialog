@@ -28,13 +28,14 @@ export function MultiSelect({ options = [], placeholder, onChange }: MultiSelect
   // Ensure options is always an array
   const safeOptions = Array.isArray(options) ? options : [];
 
-  const handleSelect = (value: string) => {
-    const newSelected = selectedValues.includes(value)
-      ? selectedValues.filter((item) => item !== value)
-      : [...selectedValues, value];
+  const handleSelect = (currentValue: string) => {
+    const newSelected = selectedValues.includes(currentValue)
+      ? selectedValues.filter((item) => item !== currentValue)
+      : [...selectedValues, currentValue];
     
     setSelectedValues(newSelected);
     onChange(newSelected);
+    setOpen(true); // Keep the popover open after selection
   };
 
   return (
@@ -52,9 +53,11 @@ export function MultiSelect({ options = [], placeholder, onChange }: MultiSelect
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
-        <Command>
-          <CommandInput placeholder={`Search ${placeholder?.toLowerCase() || ''}...`} />
+      <PopoverContent className="w-[200px] p-0" align="start">
+        <Command shouldFilter={false}>
+          <CommandInput 
+            placeholder={`Search ${placeholder?.toLowerCase() || ''}...`} 
+          />
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup>
             {safeOptions.map((option) => (
