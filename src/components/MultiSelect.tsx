@@ -25,6 +25,9 @@ export function MultiSelect({ options = [], placeholder, onChange }: MultiSelect
   const [open, setOpen] = React.useState(false);
   const [selectedValues, setSelectedValues] = React.useState<string[]>([]);
 
+  // Ensure options is always an array
+  const safeOptions = Array.isArray(options) ? options : [];
+
   const handleSelect = (value: string) => {
     const newSelected = selectedValues.includes(value)
       ? selectedValues.filter((item) => item !== value)
@@ -54,7 +57,7 @@ export function MultiSelect({ options = [], placeholder, onChange }: MultiSelect
           <CommandInput placeholder={`Search ${placeholder?.toLowerCase() || ''}...`} />
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup>
-            {(options || []).map((option) => (
+            {safeOptions.map((option) => (
               <CommandItem
                 key={option}
                 value={option}
